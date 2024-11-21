@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import './signup.css';
 import axios from 'axios';
@@ -28,7 +26,7 @@ const Signup: React.FC = () => {
   const [success, setSuccess] = useState('');
   const navigate = useNavigate(); 
   
-    const handleCustomerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCustomerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCustomerData({ ...customerData, [name]: value });
   };
@@ -69,7 +67,6 @@ const Signup: React.FC = () => {
       setSuccess(response.data.message);
       setError('');
 
-
       if (role === 'customer') {
         setCustomerData({
           name: '',
@@ -99,6 +96,11 @@ const Signup: React.FC = () => {
 
   return (
     <div className="signup-container">
+      {/* Logo Section */}
+      <div className="logo-container">
+        <img src="/assets/logo.jpg" alt="Logo" className="logo" /> {/* Logo Image */}
+      </div>
+
       <h2 className="signup-title">Sign Up</h2>
 
       <div className="role-toggle">
@@ -259,7 +261,6 @@ const Signup: React.FC = () => {
           </>
         )}
 
-
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
 
@@ -269,6 +270,4 @@ const Signup: React.FC = () => {
   );
 };
 
-
 export default Signup;
-

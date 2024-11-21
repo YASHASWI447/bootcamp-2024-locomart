@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./products.css"; // Add this for styling
 
 function Products() {
   const [formData, setFormData] = useState({
@@ -10,9 +11,7 @@ function Products() {
 
   const [statusMessage, setStatusMessage] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -46,65 +45,74 @@ function Products() {
   };
 
   return (
-    <div className="App">
-      <h1>Vendor Product Form</h1>
-      <form onSubmit={handleSubmit}>
-        {/* Product Name */}
-        <div className="form-group">
-          <label htmlFor="productname">Product Name:</label>
-          <input
-            id="productname"
-            type="text"
-            name="productname"
-            value={formData.productname}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    <div className="product-container">
+      {/* Logo and Title Section */}
+      <div className="logo-container">
+        <img src="/assets/logo.jpg" alt="Logo" className="logo" /> {/* Logo Image */}
+      </div>
 
-        {/* Stock */}
-        <div className="form-group">
-          <label htmlFor="stock">Stock:</label>
-          <input
-            id="stock"
-            type="number"
-            name="stock"
-            value={formData.stock}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <div className="product-card">
+        <h1 className="form-title">Vendor Product Form</h1>
+        <form onSubmit={handleSubmit}>
+          {/* Product Name */}
+          <div className="form-group">
+            <label htmlFor="productname">Product Name:</label>
+            <input
+              id="productname"
+              type="text"
+              name="productname"
+              value={formData.productname}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Price */}
-        <div className="form-group">
-          <label htmlFor="price">Price:</label>
-          <input
-            id="price"
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Stock */}
+          <div className="form-group">
+            <label htmlFor="stock">Stock:</label>
+            <input
+              id="stock"
+              type="number"
+              name="stock"
+              value={formData.stock}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Image URL */}
-        <div className="form-group">
-          <label htmlFor="image">Image URL:</label>
-          <input
-            id="image"
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Price */}
+          <div className="form-group">
+            <label htmlFor="price">Price:</label>
+            <input
+              id="price"
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit">Add Product</button>
-      </form>
+          {/* Image URL */}
+          <div className="form-group">
+            <label htmlFor="image">Image URL:</label>
+            <input
+              id="image"
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-      {statusMessage && <p>{statusMessage}</p>}
+          <button type="submit" className="submit-button">
+            Add Product
+          </button>
+        </form>
+
+        {statusMessage && <p className="status-message">{statusMessage}</p>}
+      </div>
     </div>
   );
 }

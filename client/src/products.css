@@ -1,105 +1,96 @@
-/* General styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #e0f7ff; /* Soft blue background */
-  margin: 0;
-  padding: 0;
+/* General Styles */
+.product-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Styles */
+.logo-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  margin-bottom: 30px;
 }
 
-/* App container */
-.App {
-  width: 400px;
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+/* Product Card */
+.product-card {
   background-color: white;
-  border-radius: 12px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  padding: 30px;
-  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Heading styles */
-h1 {
-  font-size: 1.8rem;
+.form-title {
+  text-align: center;
+  font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 16px;
   color: #333;
-}
-
-/* Form styling */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Label styles */
-label {
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: left;
-  color: #555;
+  display: block;
   margin-bottom: 5px;
 }
 
-/* Input field styles */
-input {
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
+.form-group input {
   width: 100%;
-  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
   background-color: #f9f9f9;
-  transition: all 0.3s ease-in-out;
 }
 
-input:focus {
-  border-color: #007bff;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+.form-group input:focus {
+  outline: none;
+  border-color: #4CAF50;
 }
 
-/* Button styling */
-button {
+.submit-button {
+  width: 100%;
   padding: 12px;
-  font-size: 1rem;
-  background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient color */
+  background-color: #4CAF50;
   color: white;
+  font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background: linear-gradient(to right, #4b0ca6, #1b4cb7);
+.submit-button:hover {
+  background-color: #45a049;
 }
 
-/* Status message styles */
-p {
+.status-message {
+  text-align: center;
   margin-top: 20px;
-  font-weight: bold;
-  font-size: 1rem;
-  color: #444;
+  font-size: 16px;
+  color: green;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .App {
-      width: 90%;
-      padding: 20px;
+  .product-container {
+    padding: 10px;
   }
 
-  input {
-      font-size: 0.9rem;
-  }
-
-  button {
-      font-size: 0.9rem;
+  .logo {
+    width: 120px;
   }
 }
