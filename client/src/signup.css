@@ -1,0 +1,126 @@
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+/* Signup Container */
+.signup-container {
+  background: #ffffff;
+  max-width: 500px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.signup-container:hover {
+  transform: scale(1.02);
+}
+
+/* Title */
+.signup-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+/* Form */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  width: 100%;
+  text-align: left;
+  position: relative; /* Allows proper positioning for the error message */
+}
+
+/* Label Styles */
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: inline-block;
+  color: #555;
+}
+
+/* Input Styles */
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  background-color: #f9f9f9;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #f5576c;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(245, 87, 108, 0.2);
+}
+
+/* Error Message */
+.error-message {
+  font-size: 13px;
+  color: #e74c3c;
+  text-align: left;
+  font-weight: bold;
+  margin-top: 5px; /* Adds spacing between the input field and the error message */
+  display: block; /* Ensures the message appears below the input */
+}
+
+/* Button */
+.signup-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.signup-button:hover {
+  background: linear-gradient(45deg, #2575fc, #6a11cb);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signup-container {
+    padding: 20px;
+  }
+
+  .signup-title {
+    font-size: 24px;
+  }
+
+  .form-input {
+    padding: 10px;
+  }
+
+  .signup-button {
+    padding: 12px;
+  }
+}
+
