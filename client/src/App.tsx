@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { fetchSampleData } from './services/apiService';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './Login';
+import Signup from './signup';
+import Home from './home'; // Import the Home component
 
-interface SampleData {
-  id: number;
-  name: string;
-}
-
-const App: React.FC = () => {
-  const [data, setData] = useState<SampleData[]>([]);
-
-  useEffect(() => {
-    fetchSampleData().then(response => setData(response.data));
-  }, []);
-
+const App = () => {
   return (
-    <div className="App">
-      <h1>Sample Data</h1>
-      <ul>
-        {data.map(item => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        {/* Login Page */}
+        <Route path="/login" element={<Login />} />
+        
+        {/* Signup Page */}
+        <Route path="/signup" element={<Signup />} />
+        
+        {/* Home Page */}
+        <Route path="/home" element={<Home />} />
+        
+        {/* Default Route */}
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </Router>
   );
 };
 
-export default App;
+export default App;
