@@ -52,7 +52,8 @@ const vendorSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const { vendorName, email, shopName, address, contactNo, password } = req.body;
         // Validate required fields
         if (!vendorName || !email || !shopName || !address || !contactNo || !password) {
-            return res.status(400).json({ error: 'All fields are required' });
+            res.status(400).json({ error: 'All fields are required' });
+            return;
         }
         const hashedPassword = yield bcrypt_1.default.hash(password, 10); // Hash the password
         const db = req.app.locals.db; // Get the SQLite DB connection
