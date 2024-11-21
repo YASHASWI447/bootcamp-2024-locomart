@@ -32,17 +32,24 @@ export const connectDB = async (): Promise<Database> => {
     CREATE TABLE IF NOT EXISTS vendors (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       vendorName TEXT NOT NULL,
-     
       email TEXT UNIQUE NOT NULL,
-       shopName TEXT NOT NULL,
-       address TEXT NOT NULL,
-       contactNo TEXT NOT NULL,
+      shopName TEXT NOT NULL,
+      address TEXT NOT NULL,
+      contactNo TEXT NOT NULL,
       password TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS products (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      vendorId INTEGER NOT NULL, -- Reference to vendor
+      productName TEXT NOT NULL,
+      stock INTEGER NOT NULL,
+      price REAL NOT NULL,
+      image TEXT NOT NULL,
+      FOREIGN KEY(vendorId) REFERENCES vendors(id)
     );
   `);
 
   console.log('Database connected and tables initialized.');
   return db;
 };
-
-
