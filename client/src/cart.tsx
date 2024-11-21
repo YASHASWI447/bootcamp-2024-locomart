@@ -1,41 +1,109 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import './cart.css'; // Make sure to create a cart.css file for styling
-
-// Define the Product interface
-interface Product {
-  id: number;
-  name: string;
-  quantity: string;
-  price: string;
-  vendor: string;
-  image: string;
-}
+import './cart.css';
 
 const Cart: React.FC = () => {
   const location = useLocation();
-  const cartItems: Product[] = location.state?.cart || []; // Get cart items from location state
+  const cartItems = location.state ? location.state.cart : []; // Get cart items passed from the home page
 
   return (
     <div className="cart-container">
-      <h2>Your Cart</h2>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <div className="cart-items">
-          {cartItems.map((item: Product, index: number) => (
+      {/* Navbar with Logo */}
+      <nav className="navbar">
+        <img src="/assets/logo.jpg" alt="Logo" className="logo" /> {/* Logo Image */}
+        <div className="navbar-title">Cart</div>
+      </nav>
+
+      {/* Cart Items Section */}
+      <div className="cart-items">
+        {cartItems.length === 0 ? (
+          <p>Your cart is empty</p>
+        ) : (
+          cartItems.map((item: any, index: number) => (
             <div className="cart-item" key={index}>
               <img src={item.image} alt={item.name} className="cart-item-image" />
-              <div className="cart-item-details">
-                <h3 className="cart-item-name">{item.name}</h3>
-                <p className="cart-item-quantity">{item.quantity}</p>
-                <p className="cart-item-price">{item.price}</p>
+              <div className="cart-item-info">
+                <h3>{item.name}</h3>
+                <p>{item.quantity}</p>
+                <p className="price">{item.price}</p>
               </div>
             </div>
-          ))}
+          ))
+        )}
+      </div>
+
+      {/* Delivery Information Section */}
+      <div className="delivery-section">
+        <h3>Delivery Information</h3>
+
+        <div className="input-container">
+          <label htmlFor="area">Area</label>
+          <input
+            type="text"
+            id="area"
+            className="delivery-input"
+            placeholder="Enter your area"
+          />
         </div>
-      )}
-      <footer className="cart-footer">
+
+        <div className="input-container">
+          <label htmlFor="city">City</label>
+          <input
+            type="text"
+            id="city"
+            className="delivery-input"
+            placeholder="Enter your city"
+          />
+        </div>
+
+        <div className="input-container">
+          <label htmlFor="state">State</label>
+          <input
+            type="text"
+            id="state"
+            className="delivery-input"
+            placeholder="Enter your state"
+          />
+        </div>
+
+        <div className="input-container">
+          <label htmlFor="country">Country</label>
+          <input
+            type="text"
+            id="country"
+            className="delivery-input"
+            placeholder="Enter your country"
+          />
+        </div>
+
+        <div className="input-container">
+          <label htmlFor="pincode">Pincode</label>
+          <input
+            type="text"
+            id="pincode"
+            className="delivery-input"
+            placeholder="Enter your pincode"
+          />
+        </div>
+      </div>
+
+      {/* Payment Method Section */}
+      <div className="payment-section">
+        <h3>Payment Method</h3>
+        <select className="payment-select">
+          <option>Credit/Debit Card</option>
+          <option>UPI</option>
+          <option>Cash on Delivery</option>
+        </select>
+      </div>
+
+      {/* Next Button */}
+      <div className="next-button-container">
+        <button className="next-button">Next</button>
+      </div>
+
+      {/* Footer */}
+      <footer className="footer">
         <p>&copy; 2024 Locomart. All rights reserved.</p>
       </footer>
     </div>

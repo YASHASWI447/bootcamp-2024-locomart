@@ -1,160 +1,130 @@
-/* General Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #4facfe, #00f2fe); /* Smooth gradient color */
-    color: #333;
-    line-height: 1.6;
-}
+/* home.css */
 
-/* Navbar */
-.navbar {
+/* General Styles for Home Page */
+.home-container {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    background-color: #4CAF50;
+    color: white;
     display: flex;
     justify-content: space-between;
+    padding: 15px 30px;
     align-items: center;
-    background-color: #0066cc;
-    padding: 20px 30px; /* Increased padding for better spacing */
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
-}
-
-.logo {
-    font-size: 26px; /* Increased logo size for better visibility */
-    font-weight: bold;
-    letter-spacing: 1px; /* Added letter-spacing for a more modern look */
-}
-
-.nav-icons {
+  }
+  
+  .navbar .logo {
+    width: 100px;
+    height: auto;
+  }
+  
+  .navbar .nav-icons {
     display: flex;
     align-items: center;
-    gap: 20px; /* Increased gap for better spacing */
-}
-
-.nav-icons i {
-    font-size: 22px; /* Slightly larger icons */
+  }
+  
+  .navbar .nav-icons i {
+    font-size: 20px;
+    margin-left: 20px;
     cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.nav-icons i:hover {
-    color: #00f2fe; /* Change color on hover */
-}
-
-.search-bar {
-    padding: 10px 15px; /* Increased padding for better input area */
-    border-radius: 25px;
-    border: 1px solid #ddd; /* Subtle border */
-    outline: none;
-    font-size: 14px;
-    width: 250px; /* Wider search bar */
-    transition: border-color 0.3s ease;
-}
-
-.search-bar:focus {
-    border-color: #0066cc; /* Border color changes on focus */
-}
-
-/* Products Section */
-.products-container {
-    padding: 40px 20px; /* Increased top padding for better section spacing */
-}
-
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px; /* Increased gap for better card separation */
-    justify-content: center;
-}
-
-.product-card {
-    background-color: white;
-    border-radius: 12px; /* Slightly rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
-    width: 250px; /* Slightly wider cards */
+  }
+  
+  .navbar .nav-icons input.search-bar {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-left: 20px;
+    width: 250px;
+  }
+  
+  /* Products Section */
+  .products-container {
     padding: 20px;
+  }
+  
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 products per row */
+    gap: 20px;
+  }
+  
+  .product-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-8px); /* Slightly more lift on hover */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-}
-
-.product-image {
+  }
+  
+  .product-image {
     width: 100%;
     height: auto;
-    border-radius: 10px;
-}
-
-.product-name {
-    font-size: 20px; /* Larger product name */
+    border-radius: 8px;
+  }
+  
+  .product-name {
+    font-size: 18px;
     font-weight: bold;
-    margin: 15px 0;
-    color: #333;
-}
-
-.product-quantity {
+    margin: 10px 0;
+  }
+  
+  .product-quantity, .product-vendor, .product-price {
     font-size: 14px;
-    color: #777;
-}
-
-.product-price {
-    font-size: 18px; /* Slightly larger price */
-    font-weight: bold;
-    color: #28a745;
-    margin-top: 10px;
-}
-
-.add-button {
-    background-color: #0066cc;
+    margin: 5px 0;
+  }
+  
+  .add-button {
+    background-color: #4CAF50;
     color: white;
+    padding: 8px 20px;
     border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 16px; /* Larger button text */
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.add-button:hover {
-    background-color: #0056b3;
-}
-
-.price-and-button {
+  }
+  
+  .add-button:hover {
+    background-color: #45a049;
+  }
+  
+  .price-and-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px; /* Increased margin for better separation */
-}
-
-.product-vendor {
-    font-size: 14px;
-    color: #777;
-}
-
-/* Footer */
-.footer {
+  }
+  
+  /* Next Button */
+  .next-button-container {
     text-align: center;
-    padding: 30px 20px; /* Increased padding for better size */
-    background-color: #343a40;
+    margin-top: 30px;
+  }
+  
+  .next-button {
+    background-color: #4CAF50;
     color: white;
-    font-size: 18px; /* Slightly larger footer text */
-    margin-top: 40px; /* Increased top margin for better spacing */
-}
-
-.footer a {
-    color: #00f2fe; /* Light link color */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.footer a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
   
+  .next-button:hover {
+    background-color: #45a049;
+  }
   
+  /* Footer Styles */
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+  }
   
+  .footer p {
+    font-size: 14px;
+    color: #ddd;
+  }
   
