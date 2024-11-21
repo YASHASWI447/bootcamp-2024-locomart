@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import './signup.css';
 import axios from 'axios';
@@ -24,9 +26,9 @@ const Signup: React.FC = () => {
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const navigate = useNavigate(); // For navigation
-
-  const handleCustomerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const navigate = useNavigate(); 
+  
+    const handleCustomerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCustomerData({ ...customerData, [name]: value });
   };
@@ -66,6 +68,7 @@ const Signup: React.FC = () => {
       const response = await axios.post(`http://localhost:5000${endpoint}`, data);
       setSuccess(response.data.message);
       setError('');
+
 
       if (role === 'customer') {
         setCustomerData({
@@ -256,6 +259,7 @@ const Signup: React.FC = () => {
           </>
         )}
 
+
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
 
@@ -265,4 +269,6 @@ const Signup: React.FC = () => {
   );
 };
 
+
 export default Signup;
+
