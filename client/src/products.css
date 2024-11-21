@@ -1,82 +1,130 @@
-/* General styles */
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* App container */
-  .App {
-    max-width: 600px;
-    margin: 50px auto;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+/* Product Form Container */
+.product-form-container {
+  background: #ffffff;
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-form-container:hover {
+  transform: scale(1.02);
+}
+
+/* Title */
+.product-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+/* Form */
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+
+/* Label Styles */
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: inline-block;
+  color: #555;
+}
+
+/* Input Styles */
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  background-color: #f9f9f9;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #2575fc;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.2);
+}
+
+/* Button */
+.product-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.product-button:hover {
+  background: linear-gradient(45deg, #2575fc, #6a11cb);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-button:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Status Message */
+.status-message {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-form-container {
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Form styling */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+  .product-title {
+    font-size: 24px;
   }
-  
-  /* Label and input field styles */
-  label {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  input {
+
+  .form-input {
     padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
   }
-  
-  input:focus {
-    border-color: #007bff;
+
+  .product-button {
+    padding: 12px;
   }
-  
-  /* Button styling */
-  button {
-    padding: 10px;
-    font-size: 1rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
-  /* Status message styles */
-  p {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .App {
-      width: 90%;
-      padding: 15px;
-    }
-  
-    input {
-      font-size: 0.9rem;
-    }
-  
-    button {
-      font-size: 0.9rem;
-    }
-  }
-  
+}
