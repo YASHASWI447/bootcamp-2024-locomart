@@ -32,17 +32,42 @@ const userSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.userSignup = userSignup;
 // Vendor signup
+// export const vendorSignup = async (req: Request, res: Response) => {
+//   const { vendorName, email, shopName, address, contactNo, password } = req.body;
+//   try {
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     const db = req.app.locals.db;
+//     await db.run(
+//       'INSERT INTO vendors (vendorName, email, shopName, address, contactNo, password) VALUES (?, ?, ?, ?, ?, ?)',
+//       [vendorName, email, shopName, address, contactNo, hashedPassword]
+//     );
+//     res.status(201).json({ message: 'Vendor registered successfully' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Error registering vendor' });
+//   }
+// };
 const vendorSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { vendorName, email, shopName, address, contactNo, password } = req.body;
     try {
-        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
-        const db = req.app.locals.db;
+        const { vendorName, email, shopName, address, contactNo, password } = req.body;
+        // Validate required fields
+        if (!vendorName || !email || !shopName || !address || !contactNo || !password) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+        const hashedPassword = yield bcrypt_1.default.hash(password, 10); // Hash the password
+        const db = req.app.locals.db; // Get the SQLite DB connection
+        console.log('Inserting into vendors table:', { vendorName, email, shopName });
         yield db.run('INSERT INTO vendors (vendorName, email, shopName, address, contactNo, password) VALUES (?, ?, ?, ?, ?, ?)', [vendorName, email, shopName, address, contactNo, hashedPassword]);
         res.status(201).json({ message: 'Vendor registered successfully' });
     }
     catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error registering vendor' });
+        console.error('Error during vendor registration:', error.message);
+        if (error.code === 'SQLITE_CONSTRAINT') {
+            res.status(400).json({ error: 'Email already registered' });
+        }
+        else {
+            res.status(500).json({ error: 'Error registering vendor' });
+        }
     }
 });
 exports.vendorSignup = vendorSignup;
