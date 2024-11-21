@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db';
 import authRoutes from './routes/authRoutes';
-
+import productRoutes from './routes/productRoutes';
 dotenv.config();
 
 const app: Express = express()
@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 5000;
    
 
 app.use('/api/auth', authRoutes);
-
+app.use('/api/products', productRoutes);
  
 
     app.listen(PORT, () => {
