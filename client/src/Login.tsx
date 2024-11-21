@@ -2,16 +2,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
+import axios from 'axios';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     // Validate inputs
     if (!username || !password) {
       setError('Please fill in all fields.');
@@ -21,11 +21,27 @@ const Login: React.FC = () => {
       setError('Password must be at least 8 characters.');
       return;
     }
-
-    // Clear errors and navigate to home
-    setError('');
-    navigate('/home'); // Redirect to the home page
+  
+    try {
+      // Call backend API
+      const response = await axios.post('http://localhost:5000/api/auth/login/user', {
+        email: username,
+        password,
+      });
+  
+      // Store the token in local storage
+      localStorage.setItem('token', response.data.token);
+  
+      // Navigate to home page on success
+      setError('');
+      navigate('/home');
+    } catch (err: any) {
+      // Handle errors from the backend
+      setError(err.response?.data?.error || 'Login failed. Please try again.');
+    }
   };
+  
+
 
   return (
     <div className="login-container">

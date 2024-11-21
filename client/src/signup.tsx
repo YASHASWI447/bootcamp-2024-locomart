@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './signup.css'; // Import CSS file for styling
+import axios from 'axios'
 
 const Signup: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -40,21 +41,30 @@ const Signup: React.FC = () => {
     return '';
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     // Validate form fields
     const validationError = validateForm();
     if (validationError) {
       setError(validationError);
       return;
     }
-
-    // Reset error and process form submission
-    console.log('Form Data:', formData);
-    setError('');
-    alert('Signup successful!');
+  
+    try {
+      // API call to backend
+      const response = await axios.post('http://localhost:5000/api/auth/signup/user', formData);
+  
+      // Reset error and show success message
+      console.log('Signup successful:', response.data);
+      setError('');
+      alert('Signup successful! You can now log in.');
+    } catch (err: any) {
+      // Handle backend errors
+      setError(err.response?.data?.error || 'Signup failed. Please try again.');
+    }
   };
+  
 
   return (
     <div className="signup-container">
