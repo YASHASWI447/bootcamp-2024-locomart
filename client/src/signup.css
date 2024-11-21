@@ -105,6 +105,38 @@ body {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Role Toggle Buttons */
+.role-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.role-button {
+  flex: 1; /* Makes both buttons equal width */
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: #555;
+}
+
+.role-button:hover {
+  background-color: #e3e3e3;
+}
+
+.role-button.active {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .signup-container {
@@ -121,6 +153,11 @@ body {
 
   .signup-button {
     padding: 12px;
+    font-size: 14px;
+  }
+
+  .role-button {
+    font-size: 12px;
+    padding: 8px 10px;
   }
 }
-

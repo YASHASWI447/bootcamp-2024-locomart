@@ -4,6 +4,7 @@ import Login from './Login';
 import Signup from './signup';
 import Home from './home'; // Import the Home component
 import Cart from './cart';
+import Products from './products';
 
 const App = () => {
   return (
@@ -20,6 +21,10 @@ const App = () => {
 
          {/* Cart Page */}
         <Route path="/cart" element={<Cart />} />
+
+        {/* Products Page */}
+        <Route path="/products" element={<Products />} />
+
 
         {/* Default Route */}
         <Route path="*" element={<Login />} />
