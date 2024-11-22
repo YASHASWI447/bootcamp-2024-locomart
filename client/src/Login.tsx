@@ -36,6 +36,12 @@ const Login: React.FC = () => {
 
       // Store the token in local storage
       localStorage.setItem('token', response.data.token);
+      if (role === 'vendor') {
+        localStorage.setItem('vendorId', response.data.vendorId);
+      }
+      
+       // Ensure this is done during login
+
 
       // Navigate to the appropriate page on success
       setError('');
