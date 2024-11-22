@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './components/Navbar'; // Import Navbar
 import './home.css';
 
 const Home: React.FC = () => {
-  const navigate = useNavigate(); // Initialize navigate function
-  const [cart, setCart] = useState<any[]>([]); // State to store cart items
+  const navigate = useNavigate();
+  const [cart, setCart] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const products = [
     { id: 1, name: 'Milk', quantity: '1 L', price: '₹50', vendor: 'Local Dairy', image: '/assets/milk.jpg' },
@@ -17,34 +19,26 @@ const Home: React.FC = () => {
     { id: 8, name: 'Onions', quantity: '1 Kg', price: '₹25', vendor: 'Veggie Store', image: '/assets/onion.jpg' },
   ];
 
-  // Function to add product to cart
   const addToCart = (product: any) => {
-    setCart((prevCart) => [...prevCart, product]); // Add product to the cart
+    setCart((prevCart) => [...prevCart, product]);
   };
 
-  // Navigate to Cart with all items in the cart
   const goToCart = () => {
-    navigate('/cart', { state: { cart } }); // Pass cart state to Cart page
+    navigate('/cart', { state: { cart } });
   };
+
+  // Filter products based on search query
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="home-container">
-      {/* Navbar */}
-      <nav className="navbar">
-        <img src="../assets/Logo.jpg" alt="Locomart Logo" className="logo" /> {/* Add logo here */}
-        <div className="nav-icons">
-          <i className="fas fa-home"></i>
-          <input type="text" className="search-bar" placeholder="Search products..." />
-          <i className="fas fa-bell"></i>
-          <i className="fas fa-shopping-bag"></i>
-          <i className="fas fa-user-circle"></i>
-        </div>
-      </nav>
+      <Navbar searchQuery={searchQuery} onSearchChange={setSearchQuery} /> {/* Pass search props */}
 
-      {/* Products Section */}
       <div className="products-container">
         <div className="products">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div className="product-card" key={product.id}>
               <img src={product.image} alt={product.name} className="product-image" />
               <h3 className="product-name">{product.name}</h3>
@@ -61,14 +55,12 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Next Button */}
       <div className="next-button-container">
         <button className="next-button" onClick={goToCart}>
           Next
         </button>
       </div>
 
-      {/* Footer */}
       <footer className="footer">
         <p>&copy; 2024 Locomart. All rights reserved.</p>
       </footer>
