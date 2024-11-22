@@ -111,7 +111,7 @@ const Cart: React.FC = () => {
       {/* Success Message */}
       {orderSuccess && (
         <div className="order-success-message">
-          <p>Order is Successful! Thank you for shopping with us.</p>
+          <p>Order is Successful! Redirecting to the payment page </p>
         </div>
       )}
 
