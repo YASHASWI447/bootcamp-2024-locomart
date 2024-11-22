@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './cart.css';
 
 const Cart: React.FC = () => {
   const location = useLocation();
   const cartItems = location.state ? location.state.cart : []; // Get cart items passed from the home page
+
+  const [orderSuccess, setOrderSuccess] = useState(false); // State to track if order is successful
+
+  const handleOrder = () => {
+    setOrderSuccess(true); // Set order to successful when next button is clicked
+  };
 
   return (
     <div className="cart-container">
@@ -99,8 +105,15 @@ const Cart: React.FC = () => {
 
       {/* Next Button */}
       <div className="next-button-container">
-        <button className="next-button">Next</button>
+        <button className="next-button" onClick={handleOrder}>Next</button>
       </div>
+
+      {/* Success Message */}
+      {orderSuccess && (
+        <div className="order-success-message">
+          <p>Order is Successful! Thank you for shopping with us.</p>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="footer">
@@ -110,4 +123,4 @@ const Cart: React.FC = () => {
   );
 };
 
-export default Cart;
+export default Cart;

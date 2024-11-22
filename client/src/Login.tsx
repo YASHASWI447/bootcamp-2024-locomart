@@ -72,7 +72,7 @@ const Login: React.FC = () => {
 
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="username" className="form-label">Username:</label>
+          <label htmlFor="username" className="form-label">Email:</label>
           <input
             type="text"
             id="username"
