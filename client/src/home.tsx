@@ -1,59 +1,85 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from './components/Navbar'; // Import Navbar
-import './home.css';
+import React, { useEffect, useState } from "react";
+import axios from "./services/axiosInstance"; // Import your axios instance
+import { useNavigate } from "react-router-dom";
+import Navbar from "./components/Navbar"; // Import Navbar
+import "./home.css";
+
+interface Product {
+  id: number;
+  productName: string;
+  stock: number;
+  price: string; // Keep as string for currency formatting
+  image: string;
+  vendorId: number;
+  vendor: string; // Adding vendor field for display
+}
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [cart, setCart] = useState<Product[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const products = [
-    { id: 1, name: 'Milk', quantity: '1 L', price: '₹50', vendor: 'Local Dairy', image: '/assets/milk.jpg' },
-    { id: 2, name: 'Rice', quantity: '5 Kg', price: '₹250', vendor: 'Grocery Mart', image: '/assets/rice.jpg' },
-    { id: 3, name: 'Flowers', quantity: '1 Bunch', price: '₹100', vendor: 'Bloom Store', image: '/assets/flowers.jpg' },
-    { id: 4, name: 'Bread', quantity: '400 g', price: '₹40', vendor: 'Bakery Fresh', image: '/assets/bread.jpg' },
-    { id: 5, name: 'Bananas', quantity: '1 Dozen', price: '₹60', vendor: 'Fruit Market', image: '/assets/banana.jpg' },
-    { id: 6, name: 'Eggs', quantity: '12 Pieces', price: '₹75', vendor: 'Egg Mart', image: '/assets/eggs.jpg' },
-    { id: 7, name: 'Tomatoes', quantity: '1 Kg', price: '₹30', vendor: 'Veggie Store', image: '/assets/tomatoes.jpg' },
-    { id: 8, name: 'Onions', quantity: '1 Kg', price: '₹25', vendor: 'Veggie Store', image: '/assets/onion.jpg' },
-  ];
+  // Fetch products
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get<{ products: Product[] }>("/api/products");
+      setProducts(response.data.products);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      setLoading(false);
+    }
+  };
 
-  const addToCart = (product: any) => {
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  // Add product to cart
+  const addToCart = (product: Product) => {
     setCart((prevCart) => [...prevCart, product]);
   };
 
   const goToCart = () => {
-    navigate('/cart', { state: { cart } });
+    navigate("/cart", { state: { cart } });
   };
 
   // Filter products based on search query
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    product.productName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="home-container">
       <Navbar searchQuery={searchQuery} onSearchChange={setSearchQuery} /> {/* Pass search props */}
-
-      <div className="products-container">
-        <div className="products">
-          {filteredProducts.map((product) => (
-            <div className="product-card" key={product.id}>
-              <img src={product.image} alt={product.name} className="product-image" />
-              <h3 className="product-name">{product.name}</h3>
-              <p className="product-quantity">{product.quantity}</p>
-              <div className="price-and-button">
-                <p className="product-price">{product.price}</p>
-                <button className="add-button" onClick={() => addToCart(product)}>
-                  Add
-                </button>
+      
+      <h1>Customer Dashboard</h1>
+      {loading ? (
+        <p>Loading...</p>
+      ) : filteredProducts.length === 0 ? (
+        <p>No products available</p>
+      ) : (
+        <div className="products-container">
+          <div className="products">
+            {filteredProducts.map((product) => (
+              <div className="product-card" key={product.id}>
+                <img src={product.image} alt={product.productName} className="product-image" />
+                <h3 className="product-name">{product.productName}</h3>
+                <p className="product-quantity">Stock: {product.stock}</p>
+                <div className="price-and-button">
+                  <p className="product-price">{product.price}</p>
+                  <button className="add-button" onClick={() => addToCart(product)}>
+                    Add
+                  </button>
+                </div>
+                <p className="product-vendor">{product.vendor}</p>
               </div>
-              <p className="product-vendor">{product.vendor}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="next-button-container">
         <button className="next-button" onClick={goToCart}>
